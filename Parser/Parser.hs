@@ -73,8 +73,8 @@ arithmatic name cons = do
   return (cons e1 e2)
 
 arithmatics = foldr1 (<|>) ops
-  where ops = zipWith arithmatic ["Plus", "Minus", "Mult" , "Lt", "Gt", "And", "Or", "Mod"]
-                                        [Plus, Minus, Mult, Lt, Gt, And, Or, Mod]
+  where ops = zipWith arithmatic ["Plus", "Minus", "Mult" , "Lt", "Gt", "And", "Or", "Mod", "Div"]
+                                        [Plus, Minus, Mult, Lt, Gt, And, Or, Mod, Div]
 
 argList :: Parser (ArgList LitVar)
 argList = do
@@ -136,6 +136,7 @@ runFun :: Parser LitCommand
 runFun = do
   reserved "Call"
   name <- parseVar
+  reserved "Argus"
   args <- argList
   endReturn (Call name args)
 

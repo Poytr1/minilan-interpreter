@@ -136,7 +136,7 @@ evalCommand (Assign v e) = do
   ne <- evalExpr e
   setVar v ne
   noneRes
-evalCommand (Call f args) = evalExpr (Apply f args)
+evalCommand (Call f args) = evalExpr (Apply f args) >> noneRes
 evalCommand (Return e) = do
     res <- evalExpr e
     --statePrint $ "Return !" ++ show res
@@ -145,7 +145,8 @@ evalCommand (Return e) = do
 evalCommand (Read e) = readBuffer >>= setVar e >> noneRes
 evalCommand (Print expr) = do
   e <- evalExpr expr
-  printBuffer e
+  printBuffer e 
+  noneRes
 evalCommand (If e b1 b2) = do 
     res <- evalExpr e
     case res of
