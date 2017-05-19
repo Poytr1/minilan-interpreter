@@ -1,4 +1,4 @@
-# minilan-interpreter()
+# minilan-interpreter
 
 ## 准备(默认已安装GHC)
 1. 安装cabal(Windows直接可以直接下载[cabal.exe](https://www.haskell.org/cabal/release/cabal-install-latest/))，添加环境变量例如将其放到**C:\Program Files\Haskell\bin**下。然后，获取cabal的最新版本:
@@ -21,7 +21,7 @@ $ ghc --make Main.hs -o minilan
 $ ./minilan
 ```
 ## 测试用例
-*Test* 文件夹里提供了四个测试用例，注意测试的时候需要将文件重命名为**program.txt**。输入的值从 *input.txt* 中读取，程序结果输出到 *output.txt* 中。
+*Test* 文件夹里提供了四个测试用例，注意测试的时候需要将文件重命名为**program.txt**。输入的值从 *input.txt* 中读取，程序结果输出到 *output.txt* 中。
 
 1. *program.txt* 中初始示例是一个闭包情景。输入:无  输出: 1 3
 2. *test1.txt* 代码为递归计算阶乘的示例。输入:n  输出:n!
@@ -32,7 +32,7 @@ $ ./minilan
 6. *test5.txt* 代码为nested program的情景。输入:无 输出:0 1 1
 
 ## GC算法简介
-考虑到该语言语法上比较简单存在需要Garbage Collector的地方主要是函数的调用返回阶段：
+考虑到该语言语法上比较简单存在需要Garbage Collector的地方主要是函数的调用返回阶段：
 
 1. 函数不返回对另外函数的引用，对于这种情况处理情况比较简单：在函数调用的时候为其分配Activity Record并为函数声明的形参与局部变量分配空间，在函数执行完时回收AR以及变量空间。
 
